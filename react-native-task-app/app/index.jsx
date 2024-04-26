@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
 import {
   FlatList,
@@ -15,6 +15,45 @@ const index = () => {
   const openDrawer = () => {
     navigation.dispatch(DrawerActions.openDrawer());
   };
+
+  const JobsData = [
+    {
+      companyName: "TCS",
+      status: "On Hold",
+      role: "Front-End Developer",
+      logo: require("../assets/images/Tcs.png"), // Using require to load the image
+      id: 9876542,
+    },
+    {
+      companyName: "Tech Mahindra",
+      status: "Applied",
+      role: "Back-End Developer",
+      logo: require("../assets/images/techMh.png"), // Using require to load the image
+      id: 2729936,
+    },
+    {
+      companyName: "Actify",
+      status: "On Hold",
+      role: "React Developer",
+      logo: require("../assets/images/splash.png"), // Using require to load the image
+      id: 9283661,
+    },
+  ];
+
+  const Card = ({ companyName, logo, role, status }) => (
+    <View style={styles.JobCard}>
+      <Image
+        style={{ height: 50, width: 50, borderRadius: 4, margin: 10 }}
+        source={logo}
+      />
+      <Text style={{ fontWeight: "bold", fontSize: 18 }}>{companyName}</Text>
+      <Text style={{ fontWeight: "500", fontSize: 12, color: "grey" }}>
+        {role}
+      </Text>
+      <Text style={{ textAlign: "right", marginTop: 10 }}>{status}</Text>
+    </View>
+  );
+
   return (
     <View style={styles.screen}>
       <View style={styles.heroView}>
@@ -47,7 +86,19 @@ const index = () => {
       </View>
       <View style={styles.applications}>
         <Text style={styles.applicationsTab}>Applied Jobs</Text>
-        
+        <FlatList
+          horizontal={true}
+          data={JobsData}
+          renderItem={({ item }) => (
+            <Card
+              companyName={item.companyName}
+              logo={item.logo}
+              role={item.role}
+              status={item.status}
+            />
+          )}
+          keyExtractor={(item) => item.id}
+        />
       </View>
     </View>
   );
@@ -89,6 +140,17 @@ const styles = StyleSheet.create({
     padding: 5,
     borderRadius: 5,
     fontWeight: "bold",
+  },
+  JobCard: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    width: 220,
+    backgroundColor: "#e9e7e7",
+    padding: 40,
+    borderRadius: 10,
+    margin: 10,
+    marginVertical: 20,
   },
 });
 
