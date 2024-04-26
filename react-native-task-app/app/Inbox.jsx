@@ -3,8 +3,9 @@ import React from "react";
 
 const Inbox = () => {
   return (
-    <View>
-      <Text>Inbox</Text>
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text>A Dummy Page</Text>
+      <Text>Check Test Results Page</Text>
     </View>
   );
 };

@@ -5,7 +5,28 @@ import { WebView } from "react-native-webview";
 
 const TestResults = () => {
   return (
-    <View style={{ flex: 1, padding: 10, backgroundColor: "#f0f0f00" }}>
+    <View
+      style={{
+        flex: 1,
+        padding: 7,
+        backgroundColor: "#f0f0f00",
+      }}
+    >
+      <View
+        style={{
+          backgroundColor: "white",
+          padding: 2,
+          paddingTop: 20,
+          borderTopLeftRadius: 5,
+          borderTopRightRadius: 5,
+          paddingBottom: 15,
+        }}
+      >
+        <Text style={{ fontSize: 20, fontWeight: "700" }}>Test Results</Text>
+        <Text style={{ fontSize: 15, fontWeight: "400", color: "grey" }}>
+          Here's a list of Test Results.
+        </Text>
+      </View>
       <WebView
         source={{
           uri: "https://actify-table.vercel.app/",
