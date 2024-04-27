@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import React from "react";
 import {
   FlatList,
@@ -7,10 +7,11 @@ import {
 } from "react-native-gesture-handler";
 
 import { DrawerActions } from "@react-navigation/native";
-import { useNavigation } from "expo-router";
+import { useNavigation, useRouter } from "expo-router";
 
 const index = () => {
   const navigation = useNavigation();
+  const router = useRouter();
 
   const openDrawer = () => {
     navigation.dispatch(DrawerActions.openDrawer());
@@ -38,10 +39,36 @@ const index = () => {
       logo: require("../assets/images/splash.png"), // Using require to load the image
       id: 9283661,
     },
+    {
+      companyName: "TCS",
+      status: "On Hold",
+      role: "Front-End Developer",
+      logo: require("../assets/images/Tcs.png"), // Using require to load the image
+      id: 9876142,
+    },
+    {
+      companyName: "Tech Mahindra",
+      status: "Applied",
+      role: "Back-End Developer",
+      logo: require("../assets/images/techMh.png"), // Using require to load the image
+      id: 2720936,
+    },
+    {
+      companyName: "Actify",
+      status: "On Hold",
+      role: "React Developer",
+      logo: require("../assets/images/splash.png"), // Using require to load the image
+      id: 9283662,
+    },
   ];
 
-  const Card = ({ companyName, logo, role, status }) => (
-    <View style={styles.JobCard}>
+  const Card = ({ companyName, logo, role, status, id }) => (
+    <Pressable
+      style={styles.JobCard}
+      onPress={() => {
+        router.push(`JobDetails/${id}`);
+      }}
+    >
       <Image
         style={{ height: 50, width: 50, borderRadius: 4, margin: 10 }}
         source={logo}
@@ -51,7 +78,7 @@ const index = () => {
         {role}
       </Text>
       <Text style={{ textAlign: "right", marginTop: 10 }}>{status}</Text>
-    </View>
+    </Pressable>
   );
 
   return (
@@ -95,6 +122,7 @@ const index = () => {
               logo={item.logo}
               role={item.role}
               status={item.status}
+              id={item.id}
             />
           )}
           keyExtractor={(item) => item.id}
@@ -146,11 +174,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: 220,
-    backgroundColor: "#e9e7e7",
+    backgroundColor: "#ffffff",
     padding: 40,
     borderRadius: 10,
     margin: 10,
     marginVertical: 20,
+    shadowColor: "grey",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 6,
+    elevation: 5,
   },
 });
 

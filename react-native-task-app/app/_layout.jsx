@@ -65,6 +65,15 @@ export default function Layout() {
           ),
         }}
       />
+      <Drawer.Screen
+        name="JobDetails/[id]" // This is the name of the page and must match the url from root
+        options={{
+          drawerContentStyle: { display: "none" },
+          drawerContentContainerStyle: { display: "none" },
+          drawerLabel: "",
+          title: "Details",
+        }}
+      />
     </Drawer>
   );
 }
